@@ -10,11 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-export default function Home({
-  database, stream
-}:
-  { database: React.ReactNode, stream: React.ReactNode }
-) {
+export default function Home() {
   const [image, setImage] = useState<string>()
   const [OGimage, setOGImage] = useState<string>()
   const [id, setId] = useState<string>()
