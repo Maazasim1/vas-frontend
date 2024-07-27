@@ -19,7 +19,7 @@
 import { useEffect, useState } from 'react';
 
 export default function VideoFeed({handleImage,id}:any) {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<any[]>([]);
 
 
   useEffect(() => {

@@ -15,9 +15,9 @@ export default function Home({
 }:
   { database: React.ReactNode, stream: React.ReactNode }
 ) {
-  const [image, setImage] = useState()
-  const [OGimage, setOGImage] = useState()
-  const [id, setId] = useState()
+  const [image, setImage] = useState<string>()
+  const [OGimage, setOGImage] = useState<string>()
+  const [id, setId] = useState<string>()
   const { status } = useSession();
   const router = useRouter();
 
@@ -56,7 +56,7 @@ export default function Home({
     setImage(image);
   }
 
-  function convertToBase64(file) {
+  function convertToBase64(file: Blob) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -72,14 +72,14 @@ export default function Home({
     });
   }
 
-  const handleImageUpload = async (event) => {
+  const handleImageUpload = async (event: { target: { files: any[]; }; }) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
     const image_id = uuidv4();
 
     const url = URL.createObjectURL(file)
-    const base64: string = await convertToBase64(file)
+    const base64: string = await convertToBase64(file) as string;
     console.log(base64)
     try {
 
@@ -122,7 +122,7 @@ export default function Home({
             <h2
               className="font-semibold text-xl"
             >New Search</h2>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" accept="image/*" onChange={()=>handleImageUpload} />
             <div className="flex flex-row h-full w-full">
               <div className=" flex-1">
                 <div
