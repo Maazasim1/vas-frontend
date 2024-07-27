@@ -20,8 +20,8 @@ export default function Signin() {
             password: formData.get("password"),
             redirect: false,
         });
-     
-     
+
+
         if (res?.error) {
             setError(res.error as string);
         }
@@ -74,7 +74,7 @@ export default function Signin() {
                             <Link
                                 href="/auth/register"
                                 className="text-sm text-[#888] transition duration-150 ease hover:text-black mt-3">
-                                Don't have an account?
+                                Don&apos;t have an account?
                             </Link>
 
                         </form>
