@@ -30,7 +30,7 @@ export default function Sidebar() {
                 </p>
                 <p
                     className='font-light text-[#f1f1f1] sm:block hidden'
-                >Sharah-e-faisal police station</p>
+                ></p>
             </div>
             <nav
                 className='flex-[3] sm:block hidden'

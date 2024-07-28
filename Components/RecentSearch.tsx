@@ -14,29 +14,26 @@ export default function RecentSearch({
     searchParams?: { [key: string]: string | string[] | undefined };
 }) {
 
-    const [selected, setSelected] = useState("");
+
     const [logs, setLogs] = useState<any[]>([])
     const [image, setImage] = useState("")
+    const [loading, setLoading] = useState(false)
 
 
-    useEffect(() => {
-        async function fetchLogsArray() {
-            const dataTemp = await requestLogs(selected);
-            setLogs(dataTemp)
-        }
-        if (selected) {
-            fetchLogsArray()
-        }
-
-    }, [selected])
-
-
+    async function fetchLogsArray(selected: string) {
+        setLoading(true)
+        const dataTemp = await requestLogs(selected);
+        setLoading(false)
+        setLogs(dataTemp)
+    }
 
 
     function handleImage(imageURL: string): void {
         console.log(imageURL)
         setImage(imageURL)
     }
+
+
 
     return (
 
@@ -58,7 +55,7 @@ export default function RecentSearch({
                     {searchParams?.tab === "recent-search" && (
 
                         <Suspense>
-                            < GetImages setSelectedImage={setSelected} />
+                            < GetImages setSelectedImage={fetchLogsArray} />
                         </Suspense>
                     )
                     }
@@ -69,13 +66,15 @@ export default function RecentSearch({
                     <h2
                         className="font-semibold text-xl"
                     >Further Information</h2>
+                    {loading && <p>Loading ...</p>}
+                    {logs[0]?.detection_results.length===0&&<p>No data found</p>}
                     {logs[0]?.detection_results?.map((log: any, index: number) => <>
                         <button
                             onClick={() => handleImage(log.image)}
 
                             className='p-5 m-2 bg-[#1a1a1a] rounded-md'
 
-                            key={index}>{log.timestamp}  {log.detected?.toString()} {log.video_id}</button>
+                            key={index}>{log.timestamp}  {log.detected?.toString()} {log.video_id} </button>
                         {log.image === image &&
                             < Image
                                 src={image}

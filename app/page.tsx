@@ -37,7 +37,7 @@ export default function Page({
             >Database Search</h1>
             <p>
             </p>
-            <Database />
+            <Database params={params} searchParams={searchParams} />
           </div>
           {
 

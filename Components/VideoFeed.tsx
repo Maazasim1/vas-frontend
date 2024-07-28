@@ -61,7 +61,7 @@ export default function VideoFeed({handleImage,id}:any) {
       <ul>
         {messages.map((message, index) => (
          <button 
-          onClick={()=>handleImage("data:image/jpeg;base64,"+message.image)}
+          onClick={()=>handleImage(message.image)}
           
           className='p-5 m-2 bg-[#1a1a1a] rounded-md'
           

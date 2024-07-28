@@ -12,6 +12,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import GetImages from "@/Components/GetImages";
+import { IoIosCloudUpload } from "react-icons/io";
 
 export default function UploadImage() {
     const [image, setImage] = useState<string>()
@@ -74,25 +75,25 @@ export default function UploadImage() {
 
 
     const handleImageUpload = async (event: { target: { files: any[] | FileList | null; } }) => {
-        alert("called this")
+
         if (!event.target.files) {
             return;
         }
 
-            const file = event.target.files[0];
-            const formData = new FormData();
-            formData.append('image', file);
-            const image_id = uuidv4();
-            
-            const url = URL.createObjectURL(file)
-            const base64: string = await convertToBase64(file) as string;
-            console.log(base64)
-            try {
-                
-                await fetch("http://127.0.0.1:5000/upload_file", {
-                    method: 'POST',
-                    headers: {
-                        "content-type": "application/json"
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+        const image_id = uuidv4();
+
+        const url = URL.createObjectURL(file)
+        const base64: string = await convertToBase64(file) as string;
+        console.log(base64)
+        try {
+
+            await fetch("http://127.0.0.1:5000/upload_file", {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
                 },
                 body: JSON.stringify({
                     image: base64.replace(/^data:image\/\w+;base64,/, ''),
@@ -119,18 +120,21 @@ export default function UploadImage() {
                             className="font-semibold text-xl mb-5"
                         >New Search</h2>
                         <div className="flex flex-row h-full w-full">
-                            <div className=" flex-1">
-                                <div
-                                    className="bg-gradient-to-r from-pink-500 to-violet-600"
-                                >
-                                </div>
+                            <div className=" flex-1 items-center flex justify-center">
+                                {!OGimage &&
+                                    <>
+                                        <label htmlFor="file-upload" className="font-bold text-lg bg-gradient-to-r from-pink-500 to-violet-600 h-[300px] flex items-center px-3 rounded-md w-[300px] justify-around flex-col">
+                                            <IoIosCloudUpload size={150} />
+                                            Upload Image
+                                        </label>
+                                        <input id="file-upload" style={{ display: 'none' }} className='none' type="file" accept="image/*" onChange={(e) => handleImageUpload(e)} />
+                                    </>
+                                }
+
                             </div>
                             <div>
                             </div>
-                            <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e)} />
-                            <button>
-                                Search
-                            </button>
+
                             {OGimage && <Image
                                 src={OGimage}
                                 alt="image to scan"

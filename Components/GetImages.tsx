@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { requestImages } from '@/lib/utils/requestImages';
 import Image from 'next/image';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { useSession } from 'next-auth/react';
 export default function GetImages({ setSelectedImage }: any) {
+    const session=useSession()
     const [data, setData] = useState<any[]>([])
     useEffect(() => {
         async function setImage() {
