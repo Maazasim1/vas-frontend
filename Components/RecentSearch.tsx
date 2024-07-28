@@ -1,7 +1,11 @@
 
+'use client'
 import Database from "@/Components/Database";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import GetImages from "@/Components/GetImages";
+import { useState } from "react";
+import { requestLogs } from "@/lib/utils/requestLogs";
+import Image from "next/image";
 export default function RecentSearch({
     params,
     searchParams,
@@ -10,8 +14,29 @@ export default function RecentSearch({
     searchParams?: { [key: string]: string | string[] | undefined };
 }) {
 
+    const [selected, setSelected] = useState("");
+    const [logs, setLogs] = useState<any[]>([])
+    const [image, setImage] = useState("")
 
 
+    useEffect(() => {
+        async function fetchLogsArray() {
+            const dataTemp = await requestLogs(selected);
+            setLogs(dataTemp)
+        }
+        if (selected) {
+            fetchLogsArray()
+        }
+
+    }, [selected])
+
+
+
+
+    function handleImage(imageURL: string): void {
+        console.log(imageURL)
+        setImage(imageURL)
+    }
 
     return (
 
@@ -33,7 +58,7 @@ export default function RecentSearch({
                     {searchParams?.tab === "recent-search" && (
 
                         <Suspense>
-                            < GetImages />
+                            < GetImages setSelectedImage={setSelected} />
                         </Suspense>
                     )
                     }
@@ -44,6 +69,22 @@ export default function RecentSearch({
                     <h2
                         className="font-semibold text-xl"
                     >Further Information</h2>
+                    {logs[0]?.detection_results?.map((log: any, index: number) => <>
+                        <button
+                            onClick={() => handleImage(log.image)}
+
+                            className='p-5 m-2 bg-[#1a1a1a] rounded-md'
+
+                            key={index}>{log.timestamp}  {log.detected?.toString()} {log.video_id}</button>
+                        {log.image === image &&
+                            < Image
+                                src={image}
+                                alt="image to scan"
+                                width={300}
+                                height={300}
+                                className="rounded-lg object-cover mr-10 overflow-hidden h-[300px]" />
+                        }
+                    </>)}
                 </div>}
         </div>
     )

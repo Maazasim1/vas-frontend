@@ -89,7 +89,7 @@ export default function UploadImage() {
             console.log(base64)
             try {
                 
-                await fetch("http://192.168.1.5:5000/upload_file", {
+                await fetch("http://127.0.0.1:5000/upload_file", {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"

@@ -1,20 +1,38 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { requestImages } from '@/lib/utils/requestImages';
 import Image from 'next/image';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-export default async function GetImages() {
-    const data = await requestImages("mazzasimq1@gmail.com");
+export default function GetImages({ setSelectedImage }: any) {
+    const [data, setData] = useState<any[]>([])
+    useEffect(() => {
+        async function setImage() {
+
+            const dataTemp = await requestImages("mazzasimq1@gmail.com");
+            if (dataTemp.length > 0) {
+                setData(dataTemp)
+            }
+            else {
+                setData([])
+            }
+        }
+        setImage()
+    }, [])
 
     return (
         <div className='grid sm:grid-cols-4 grid-cols-1 gap-4'>
-            {data.map((images:{image:string,face_id:string}, index: number) =>
-                <Image
+            {data?.map((images: { up_image: string, up_image_id: string }, index: number) =>
+                <button
                     key={index}
-                    src={`data:image/jpeg;base64,${images.image}`}
-                    alt="image to scan"
-                    width={300}
-                    height={300}
-                    className="rounded-lg object-cover mr-10 overflow-hidden h-[300px]" />
+                    onClick={() => setSelectedImage(images.up_image_id)}
+                >
+                    <Image
+                        src={images.up_image}
+                        alt="image to scan"
+                        width={300}
+                        height={300}
+                        className="rounded-lg object-cover mr-10 overflow-hidden h-[300px]" />
+                </button>
             )
             }
         </div>
