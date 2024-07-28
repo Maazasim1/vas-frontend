@@ -17,13 +17,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function VideoFeed({handleImage,id}:any) {
   const [messages, setMessages] = useState<any[]>([]);
+  const session=useSession()
 
 
   useEffect(() => {
-    const eventSource = new EventSource(`http://127.0.0.1:5000/stream?image_id=${id}`);
+    const eventSource = new EventSource(`http://192.168.1.5:5000/stream?image_id=${id}&email=${session.data?.user?.email}`);
 
     eventSource.onmessage = (event) => {
       const newMessage = JSON.parse(event.data);
