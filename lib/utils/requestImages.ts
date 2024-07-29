@@ -1,6 +1,6 @@
 async function requestImages(email:string) {
     try {
-        const res = await fetch(`http://127.0.0.1:5000/get_metadata?email=${email}`, {
+        const res = await fetch(`https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/get_metadata?email=${email}`, {
             method: "GET",
             headers: { "content-type": "application/json" }
         });

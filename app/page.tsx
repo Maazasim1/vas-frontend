@@ -39,11 +39,17 @@ export default function Page({
             </p>
             <Database params={params} searchParams={searchParams} />
           </div>
-          {
 
-            searchParams?.tab === "recent-search"?
-            < RecentSearch params={params} searchParams={searchParams} />:<UploadImage />
-          }
+
+
+          <div className={searchParams?.tab === "recent-search" ? "block" : "hidden"}>
+            < RecentSearch params={params} searchParams={searchParams} />
+          </div>
+
+          <div className={searchParams?.tab === "recent-search" ? "hidden" : "block"}>
+            <UploadImage />
+          </div>
+
         </div>
       </>
 

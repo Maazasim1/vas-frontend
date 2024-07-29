@@ -21,7 +21,7 @@ export default function Register() {
             setError(r.error);
             return;
         } else {
-            return router.push("/login");
+            return router.push("/");
         }
     };
 

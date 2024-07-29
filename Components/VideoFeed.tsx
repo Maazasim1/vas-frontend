@@ -25,7 +25,7 @@ export default function VideoFeed({handleImage,id}:any) {
 
 
   useEffect(() => {
-    const eventSource = new EventSource(`http://127.0.0.1:5000/stream?image_id=${id}&email=${session.data?.user?.email}`);
+    const eventSource = new EventSource(`https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
 
     eventSource.onmessage = (event) => {
       const newMessage = JSON.parse(event.data);

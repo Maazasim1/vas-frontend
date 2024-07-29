@@ -1,6 +1,6 @@
 async function requestLogs(id: string) {
     try {
-        const res = await fetch(`http://127.0.0.1:5000/get_metadata_array?image_id=${id}`, {
+        const res = await fetch(`https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/get_metadata_array?image_id=${id}`, {
             method: "GET",
             headers: { "content-type": "application/json" }
         });
