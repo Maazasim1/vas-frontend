@@ -12,7 +12,7 @@ export default function GetImages({ setSelectedImage }: any) {
     }
     useEffect(() => {
         async function setImage() {
-            const dataTemp = await requestImages(session.data?.user?.email);
+            const dataTemp = await requestImages(session.data?.user?.email as string);
             if (dataTemp.length > 0) {
                 setData(dataTemp)
             }
