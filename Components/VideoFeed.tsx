@@ -30,7 +30,7 @@ export default function VideoFeed({ handleImage, id }: any) {
   const router = useRouter()
 
   useEffect(() => {
-    const eventSource = new EventSource(`vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
+    const eventSource = new EventSource(`https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
 
     eventSource.onmessage = (event) => {
       if (event.data === "data: Video processing completed\n\n") {

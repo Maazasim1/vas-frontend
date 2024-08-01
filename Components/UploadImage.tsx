@@ -93,7 +93,7 @@ export default function UploadImage() {
         console.log(base64)
         try {
 
-            await fetch(`vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/upload_file`, {
+            await fetch(`https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/upload_file`, {
                 method: 'POST',
                 headers: {
                     "content-type": "application/json"
