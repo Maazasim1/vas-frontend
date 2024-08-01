@@ -32,7 +32,7 @@ export default function Signin() {
             if (res?.error) {
                 setError(res.error as string);
 
-                return res.error;
+                res.error;
 
             }
             if (res?.ok) {
