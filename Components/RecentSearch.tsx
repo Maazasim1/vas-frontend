@@ -39,7 +39,7 @@ export default function RecentSearch({
 
         <div className="flex sm:flex-row flex-col h-[85vh] ">
 
-            <div className="bg-[#1f1f1f] flex-[3.5] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[85vh] h-[40vh] overflow-scroll">
+            <div className="bg-[#1f1f1f] flex-[3.5] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[85vh] h-[40vh] overflow-scroll no-scrollbar">
                 <h2
                     className="font-semibold text-xl mb-5"
                 >Recent Search</h2>
@@ -62,7 +62,7 @@ export default function RecentSearch({
                 </div>
             </div>
             {searchParams?.tab === "recent-search" &&
-                <div className="bg-[#1f1f1f] flex-[1.5] rounded-xl p-3 overflow-scroll">
+                <div className="bg-[#1f1f1f] flex-[1.5] rounded-xl p-3 overflow-scroll no-scrollbar">
                     <h2
                         className="font-semibold text-xl"
                     >Further Information</h2>

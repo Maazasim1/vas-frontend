@@ -25,7 +25,7 @@ export default function GetImages({ setSelectedImage }: any) {
     }, [session])
 
     return (
-        <div className='grid sm:grid-cols-4 grid-cols-1 gap-4'>
+        <div className='grid sm:grid-cols-4 grid-cols-1 gap-4 no-scrollbar'>
             
             {data?.map((images: { up_image: string, up_image_id: string }, index: number) =>
                 <button
