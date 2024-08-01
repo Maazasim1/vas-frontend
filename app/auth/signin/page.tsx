@@ -24,8 +24,7 @@ export default function Signin() {
             const res = await signIn("credentials", {
                 email: formData.get("email"),
                 password: formData.get("password"),
-                redirect: true,
-                callbackUrl: `${window.location.origin}/`
+                redirect: false,
             });
 
 
@@ -37,7 +36,7 @@ export default function Signin() {
             }
             if (res?.ok) {
 
-                //  return router.push("/");
+                return router.push("/");
             }
         }
         catch (error) {
