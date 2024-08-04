@@ -26,10 +26,10 @@ export default function Page({
   return (
     <main className="flex min-h-screen flex-col sm:flex-row p-10">
       <>
-        <div className=" sm:flex-1">
+        <div className=" sm:flex-[1.5]">
           <Sidebar />
         </div>
-        <div className="flex-[5]">
+        <div className="flex-[4.5]">
           <div className="flex sm:flex-row flex-col items-center sm:mb-3 mb-5 mt-5 sm:mt-0">
 
             <h1

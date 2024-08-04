@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import { TbDeviceDesktopSearch, TbDatabaseSearch } from "react-icons/tb";
+import { TbDeviceDesktopSearch, TbDatabaseSearch, TbVideo, TbReport } from "react-icons/tb";
 import { signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 
@@ -9,7 +9,7 @@ export default function Sidebar() {
     const session = useSession()
     return (
         <div
-            className='sm:pr-10 justify-between flex flex-row sm:flex-col sm:h-[88vh]'
+            className='sm:pr-10 justify-between flex flex-row sm:flex-col sm:h-[85vh]  overflow-scroll no-scrollbar'
         >
             <div
                 className='flex-1'
@@ -46,7 +46,67 @@ export default function Sidebar() {
                         className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
                     >
                         <TbDatabaseSearch size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                        Database Search
+                        Facial Recognition (Database)
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbDatabaseSearch size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                        Facial Recognition (Database)
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbDatabaseSearch size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Facial Recognition (Stream)
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Reported Crimes
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Background Check
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Records Management System
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Complaint Management System
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Biometric Verification
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Cybercrime
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbVideo size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       See All videos (NVR)
+                    </li>
+                    <li
+                        className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
+                    >
+                        <TbVideo size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
+                       Data Analytics
                     </li>
                 </ul>
             </nav>
