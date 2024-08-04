@@ -13,10 +13,10 @@ export default function Database({
         <div className="mx-auto space-y-12">
             <TabGroup defaultIndex={ searchParams?.tab === "recent-search"?1:0}>
                 <TabList variant="solid">
-                    <Link href={"/?tab=new-search"}>
+                    <Link href={"/database?tab=new-search"}>
                         <Tab value="1">New search</Tab>
                     </Link>
-                    <Link href={"/?tab=recent-search"}>
+                    <Link href={"/database?tab=recent-search"}>
                         <Tab value="2">Recent Searches</Tab>
                     </Link>
                 </TabList>

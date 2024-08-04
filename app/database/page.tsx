@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import Sidebar from "../Sidebar";
+import Sidebar from "../Sidebar"
 import Database from "@/Components/Database";
 import { Suspense } from "react";
 import VideoFeed from "@/Components/VideoFeed";
@@ -34,11 +34,22 @@ export default function Page({
 
             <h1
               className="font-semibold text-2xl"
-            >Stream</h1>
+            >Database Search</h1>
             <p>
             </p>
-
+            <Database params={params} searchParams={searchParams} />
           </div>
+
+
+
+          <div className={searchParams?.tab === "recent-search" ? "block" : "hidden"}>
+            < RecentSearch params={params} searchParams={searchParams} />
+          </div>
+
+          <div className={searchParams?.tab === "recent-search" ? "hidden" : "block"}>
+            <UploadImage />
+          </div>
+
         </div>
       </>
 

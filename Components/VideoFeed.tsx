@@ -21,26 +21,38 @@ import { useSession } from 'next-auth/react';
 import { MdFormatListNumbered, MdOutlineAccessTime, MdOutlinePermIdentity, MdLinkedCamera } from "react-icons/md";
 import Image from 'next/image';
 import Link from 'next/link';
-const { BACKEND_URL } = process.env;
+import { BACKEND_URL } from '@/config'
 import { useRouter } from 'next/navigation';
 
-export default function VideoFeed({ handleImage, id }: any) {
+export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGImage}: any) {
   const [messages, setMessages] = useState<any[]>([]);
+  
   const session = useSession()
   const router = useRouter()
 
   useEffect(() => {
-    const eventSource = new EventSource(`https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
+    const eventSource = new EventSource(BACKEND_URL + `/stream/video?image_id=${id}&email=${session.data?.user?.email}` || `https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
 
     eventSource.onmessage = (event) => {
-      if (event.data === "data: Video processing completed\n\n") {
-        alert("the stream has completed")
+      const newMessage = JSON.parse(event.data);
+      if (newMessage.completed) {
+        alert(newMessage.completed)
+        //eventSource.close()
+        //return;
+      }
+      if (newMessage["Video Completion"]) {
+        alert(newMessage["Video Completion"])
+        eventSource.close()
+        setId("")
         return;
       }
-      const newMessage = JSON.parse(event.data);
-
-      console.log(newMessage)
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      if (newMessage.video_count) {
+        console.log(`video ${newMessage.video_count} has completed processing`)
+        setVideoCount(newMessage.video_count);
+      }
+      else {
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+      }
     };
 
     eventSource.onerror = () => {
@@ -60,7 +72,7 @@ export default function VideoFeed({ handleImage, id }: any) {
 
       window.open(image, '_blank')?.focus()
     }
-    
+
   }
 
   //   const messages=[
@@ -70,11 +82,16 @@ export default function VideoFeed({ handleImage, id }: any) {
   //         stream:"video 1"
   //     }
   //   ]
+  function handleCancel(){
+    setOGImage()
+    setId("")
+  }
 
 
 
   return (
     <div>
+     
       {/* <p>Passed: {(messages.filter((message)=>message.detected)).length}</p>
         <p>Failed: {(messages.filter((message)=>!message.detected)).length}</p> */}
       <table className='p-5 w-full'>
@@ -104,6 +121,9 @@ export default function VideoFeed({ handleImage, id }: any) {
               <div className='flex flex-row items-center'>
                 <MdLinkedCamera className='mr-3' /> Camera ID
               </div>
+            </th>
+            <th>
+              <button onClick={handleCancel} className='bg-red-500 px-3 py-2 rounded-lg'>Cancel</button>
             </th>
           </tr>
         </thead>

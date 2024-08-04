@@ -6,6 +6,8 @@ import GetImages from "@/Components/GetImages";
 import { useState } from "react";
 import { requestLogs } from "@/lib/utils/requestLogs";
 import Image from "next/image";
+import RecentSearchImages from "./RecentSearchImages";
+import Loader from "./Loader";
 export default function RecentSearch({
     params,
     searchParams,
@@ -32,6 +34,7 @@ export default function RecentSearch({
         console.log(imageURL)
         setImage(imageURL)
     }
+    
 
 
 
@@ -39,7 +42,7 @@ export default function RecentSearch({
 
         <div className="flex sm:flex-row flex-col h-[85vh] ">
 
-            <div className="bg-[#1f1f1f] flex-[3.5] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[85vh] h-[40vh] overflow-scroll no-scrollbar">
+            <div className="bg-[#1f1f1f] flex-[1] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[85vh] h-[40vh] overflow-scroll no-scrollbar">
                 <h2
                     className="font-semibold text-xl mb-5"
                 >Recent Search</h2>
@@ -63,12 +66,17 @@ export default function RecentSearch({
             </div>
             {searchParams?.tab === "recent-search" &&
                 <div className="bg-[#1f1f1f] flex-[1.5] rounded-xl p-3 overflow-scroll no-scrollbar">
-                    <h2
-                        className="font-semibold text-xl"
-                    >Further Information</h2>
-                    {loading && <p>Loading ...</p>}
-                    {logs[0]?.detection_results.length===0&&<p>No data found</p>}
-                    {logs[0]?.detection_results?.map((log: any, index: number) => <>
+                    <div className="flex flex-row">
+
+                        <h2
+                            className="font-semibold text-xl"
+                        >Further Information</h2>
+                        
+                    </div>
+                    {loading && <Loader Width={30} Height={30} />}
+                    {logs[0]?.detection_results.length === 0 && <p>No data found</p>}
+                    {logs && <RecentSearchImages messages={logs[0]?.detection_results} />}
+                    {/* {logs[0]?.detection_results?.map((log: any, index: number) => <>
                         <button
                             onClick={() => handleImage(log.image)}
 
@@ -83,7 +91,7 @@ export default function RecentSearch({
                                 height={300}
                                 className="rounded-lg object-cover mr-10 overflow-hidden h-[300px]" />
                         }
-                    </>)}
+                    </>)} */}
                 </div>}
         </div>
     )
