@@ -1,4 +1,4 @@
-export const BACKEND_URL: string = 'http://localhost:5000';
+export const BACKEND_URL: string = 'https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net';
 export const FEATURES = {
     "ReportedCrimes": {
         "heading": "Reported Crimes",
