@@ -24,14 +24,14 @@ import Link from 'next/link';
 import { BACKEND_URL } from '@/config'
 import { useRouter } from 'next/navigation';
 
-export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGImage}: any) {
+export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGImage,type}: any) {
   const [messages, setMessages] = useState<any[]>([]);
   
   const session = useSession()
   const router = useRouter()
 
   useEffect(() => {
-    const eventSource = new EventSource(BACKEND_URL + `/stream/video?image_id=${id}&email=${session.data?.user?.email}` || `https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
+    const eventSource = new EventSource(BACKEND_URL + `/stream/${type}?image_id=${id}&email=${session.data?.user?.email}` || `https://vas-ech6h7cfgchdh2f2.southeastasia-01.azurewebsites.net/stream?image_id=${id}&email=${session.data?.user?.email}`);
 
     eventSource.onmessage = (event) => {
       const newMessage = JSON.parse(event.data);
@@ -43,7 +43,7 @@ export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGIm
       if (newMessage["Video Completion"]) {
         alert(newMessage["Video Completion"])
         eventSource.close()
-        setId("")
+       handleCancel()
         return;
       }
       if (newMessage.video_count) {

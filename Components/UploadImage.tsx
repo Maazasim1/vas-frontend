@@ -21,6 +21,7 @@ export default function UploadImage() {
     const [id, setId] = useState<string>()
     const [videoCount, setVideoCount] = useState<number>(0)
     const [loading, setLoading] = useState(false);
+    const [type,setType]=useState("");
     const { status } = useSession();
 
     const router = useRouter();
@@ -130,6 +131,7 @@ export default function UploadImage() {
             console.log(error)
         }
         finally {
+            setType(fileType.startsWith('image/')?"image":"video")
             setOGImage(base64)
             setId(image_id)
             setLoading(false)
@@ -207,7 +209,7 @@ export default function UploadImage() {
                             </div>
                             <div className="bg-[#1f1f1f]  rounded-xl  overflow-scroll no-scrollbar sm:h-[85vh] h-[40vh] border-2 border-[#2f2f2f]">
                                 <Suspense fallback={<Loader Width={30} Height={30} />}>
-                                    {id && <VideoFeed handleImage={handleImage} id={id} setId={setId} setVideoCount={setVideoCount} setOGImage={setOGImage} />}
+                                    {id && <VideoFeed handleImage={handleImage} id={id} setId={setId} setVideoCount={setVideoCount} setOGImage={setOGImage} type={type}/>}
                                 </Suspense>
                             </div>
                         </div>
