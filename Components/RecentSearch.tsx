@@ -51,9 +51,9 @@ export default function RecentSearch({
 
     return (
 
-        <div className="flex sm:flex-row flex-col h-[85vh] ">
+        <div className="flex sm:flex-row flex-col h-[75vh] ">
 
-            <div className="bg-[#1f1f1f] flex-[1] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[85vh] h-[40vh] overflow-scroll no-scrollbar">
+            <div className="bg-[#1f1f1f] flex-[1] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[75vh] h-[40vh] overflow-scroll no-scrollbar">
                 <h2
                     className="font-semibold text-xl mb-5"
                 >Recent Search</h2>

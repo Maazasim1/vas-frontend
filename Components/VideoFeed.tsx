@@ -42,6 +42,7 @@ export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGIm
       }
       if (newMessage["Video Completion"]) {
         alert(newMessage["Video Completion"])
+        setVideoCount(0)
         eventSource.close()
        handleCancel()
         return;

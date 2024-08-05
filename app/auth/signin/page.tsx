@@ -53,7 +53,7 @@ export default function Signin() {
             <h1 className='bg-black rounded-br-lg w-32 py-2 font-bold flex items-center justify-center text-2xl'>VisiumX</h1>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
-                <div className="w-full bg-[#1f1f1f] rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
+                <div className="w-full  bg-transparent rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         {error && <div className='bg-red-500 rounded-md w-full p-5'>
                             <h1 >
@@ -62,19 +62,19 @@ export default function Signin() {
 
 
                         </div>}
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-[#6ebcc5] text-center md:text-2xl pb-10 border-b-2 border-gray-400">
-                            Visium Analytics Services
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-white text-center md:text-2xl pb-10 border-b-2 border-gray-400">
+                            Visium Analytics Systems
                         </h1>
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl ">
-                            Sign in to your account
+                            Sign in
                         </h1>
                         <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-white ">Your email</label>
                                 <input onChange={(e) => email.current = e.target.value} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" />
                             </div>
                             <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-white ">Password</label>
                                 <input onChange={(e) => password.current = e.target.value} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " />
                             </div>
                             <div className="flex items-center justify-between">
@@ -83,16 +83,16 @@ export default function Signin() {
                                         <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " />
                                     </div>
                                     <div className="ml-3 text-sm">
-                                        <label htmlFor="remember" className="text-gray-500 ">Remember me</label>
+                                        <label htmlFor="remember" className="text-white ">Remember me</label>
                                     </div>
                                 </div>
                                
                             </div>
 
-                            <button disabled={loading} className="mt-2 w-full text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex-row flex items-center justify-center">{loading ? <Loader Width={20} Height={20} /> : "Sign in"}</button>
+                            <button disabled={loading} className="mt-2 w-full text-white bg-[#000] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex-row flex items-center justify-center">{loading ? <Loader Width={20} Height={20} /> : "Sign in"}</button>
                             <Link
                                 href="/auth/register"
-                                className="text-sm text-[#888] transition duration-150 ease hover:text-black mt-3">
+                                className="text-sm text-[#fff] transition duration-150 ease hover:text-black mt-3">
                                 Don&apos;t have an account?
                             </Link>
 

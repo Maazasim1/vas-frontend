@@ -1,144 +1,138 @@
 "use client"
-import React from 'react'
-import Image from 'next/image'
-import { TbDeviceDesktopSearch, TbDatabaseSearch, TbVideo, TbReport, TbHome } from "react-icons/tb";
-import { signOut } from 'next-auth/react';
-import { useSession } from 'next-auth/react';
+import React from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { TbDeviceDesktopSearch, TbDatabaseSearch, TbVideo, TbReport, TbHome, TbMenu, TbLogout } from "react-icons/tb";
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import SideButtons from '@/Components/SideButtons';
+import { signOut } from 'next-auth/react';
 
 export default function Sidebar() {
-    const session = useSession()
-    const router=useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const router=useRouter()
+    const [show, setShow] = React.useState(false);
+
+    const iconSize = 35;
+
+    const isActive = (path: string) => {
+        const currentPath = `${pathname}${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
+        return currentPath === path ? 'bg-[#1f1f1f]' : '';
+    };
+
     return (
         <>
-            <div
-                className='sm:pr-10 justify-between flex flex-row sm:flex-col sm:h-[85vh]  overflow-scroll no-scrollbar'
-            >
-                <div
-                    className='flex-1'
-                >
-                    {/* <img
-                    src={"/profile.jpg"}
-                    alt="profile picture"
-                    width={60}
-                    height={60}
-                    className='rounded-full border-[#1c1c1c] border-[3px] w-10 h-10 sm:w-[60px] sm:h-[60px]'
+            <div className='flex flex-row justify-between'>
 
-                /> */}
-                    <p
-                        className="font-bold text-3xl"
-
-                    >
-                        VAS
-                    </p>
-                    <p
-                        className="font-bold "
-
-                    >
-                        {session?.data?.user?.name}
-                    </p>
-                    <p
-                        className='font-light text-[#f1f1f1] sm:block hidden'
-                    ></p>
+                <p className="font-bold text-3xl">VisiumX</p>
+                <button className='sm:hidden block' onClick={() => setShow(!show)}><TbMenu /></button>
+            </div>
+            <div className='sm:pr-10 justify-between flex flex-row sm:flex-col sm:h-[80vh] overflow-scroll no-scrollbar '>
+                <div className='flex-1'>
+                    <p className='font-light text-[#f1f1f1] sm:block hidden'></p>
                 </div>
-                <nav
-                    className='flex-[3] sm:block hidden'
-                >
+                <nav className={`flex-[3] sm:block sm:bg-transparent sm:w-full w-[100vw] bg-[#1f1f1f] ${show ? "absolute" : "hidden"} top-24 left-0`}>
                     <ul>
-                        {/* <li
-                        className='my-2 text-[#f1f1f1] flex flex-row items-center'
-                    >
-                        <TbDeviceDesktopSearch size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                        Live Search
-                    </li> */}
                         <Link href="/">
-                            <li
-                                className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
-                            >
-                                <TbHome size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Home
-                            </li>
+                            <SideButtons className={isActive('/')}>
+                                <>
+                                    <TbHome size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Home
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/database">
-
-                            <li
-                                className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
-                            >
-                                <TbDatabaseSearch size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Facial Recognition (Database)
-                            </li>
+                            <SideButtons className={isActive('/database')}>
+                                <>
+                                    <TbDatabaseSearch size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Recognition (Database)
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/stream">
-                            <li
-                                className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'
-                            >
-                                <TbDatabaseSearch size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Facial Recognition (Stream)
-                            </li>
+                            <SideButtons className={isActive('/stream')}>
+                                <>
+                                    <TbDatabaseSearch size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Recognition (Stream)
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=ReportedCrimes">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Reported Crimes
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=ReportedCrimes')}>
+                                <>
+                                    <TbReport size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Reported Crimes
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=BackgroundCheck">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Background Check
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=BackgroundCheck')}>
+                                <>
+                                    <TbReport size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Background Check
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=RecordsManagementSystem">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Records Management System
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=RecordsManagementSystem')}>
+                                <>
+                                    <TbReport size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Records Management
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=ComplaintManagementSystem">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Complaint Management System
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=ComplaintManagementSystem')}>
+                                <>
+                                    <TbReport size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Complaint Management
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=BiometricVerification">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Biometric Verification
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=BiometricVerification')}>
+                                <>
+                                    <TbReport size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Biometric Verification
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=Cybercrime">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbReport size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Cybercrime
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=Cybercrime')}>
+                                <>
+                                    <TbReport size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Cybercrime
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=SeeAllVideosNVR">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbVideo size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                See All Videos (NVR)
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=SeeAllVideosNVR')}>
+                                <>
+                                    <TbVideo size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    See All Videos (NVR)
+                                </>
+                            </SideButtons>
                         </Link>
                         <Link href="/optional?feature=DataAnalytics">
-                            <li className='my-2 text-[#f1f1f1] flex flex-row items-center bg-[#1f1f1f] px-1 py-1 rounded-md'>
-                                <TbVideo size={40} className='mr-4 bg-[#1f1f1f] p-2 rounded-full' color='white' />
-                                Data Analytics
-                            </li>
+                            <SideButtons className={isActive('/optional?feature=DataAnalytics')}>
+                                <>
+                                    <TbVideo size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                                    Data Analytics
+                                </>
+                            </SideButtons>
                         </Link>
-
-
+                       {show&& <button
+                            onClick={async () => {
+                                await signOut()
+                                router.push("/auth/signin")
+                            }}
+                            className='my-2 text-[#f1f1f1] flex flex-row items-center   py-1 rounded-md text-[12px] hover:bg-[#1f1f1f] active:bg-[#1f1f1f] focus:bg-[#1f1f1f] px-1 ${className}'
+                        >
+                            <TbLogout size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
+                            Logout
+                        </button>}
                     </ul>
                 </nav>
             </div>
-            <button
-                onClick={async () => {
-                   await signOut()
-                   router.push("/auth/signin")
-                }}
-                className='sm:w-[20.8vw] w-24 h-10 bg-[#1f1f1f] rounded-md'
-            >
-                Logout
-            </button>
         </>
-    )
+    );
 }

@@ -156,7 +156,7 @@ export default function UploadImage() {
                             </h2>
 
 
-                            <div className="bg-[#1f1f1f]  rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[85vh] h-[40vh] no-scrollbar overflow-scroll">
+                            <div className="bg-[#1f1f1f]  rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[70vh] h-[40vh] no-scrollbar overflow-scroll">
 
                                 <div className="flex flex-row h-full w-full">
                                     <div className=" flex-1 items-center flex justify-center">
@@ -166,7 +166,7 @@ export default function UploadImage() {
                                                     <>
                                                         <label htmlFor="file-upload" className="font-bold text-lg bg-[#2f2f2f] h-[300px] flex items-center px-3 rounded-md w-[300px] justify-around flex-col">
                                                             <IoIosCloudUpload size={150} />
-                                                            Upload Image/Video
+                                                            Upload File
                                                         </label>
                                                         <input id="file-upload" style={{ display: 'none' }} className='none' type="file" accept="image/*,video/*" onChange={(e) => handleImageUpload(e)} />
                                                     </>
