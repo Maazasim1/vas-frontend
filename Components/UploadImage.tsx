@@ -178,7 +178,7 @@ export default function UploadImage() {
                                     <div>
                                     </div>
 
-                                    {OGimage && <Image
+                                    {OGimage && <img
                                         src={OGimage}
                                         alt="image to scan"
                                         width={300}
@@ -186,7 +186,7 @@ export default function UploadImage() {
                                         className="rounded-lg object-cover mr-10 overflow-hidden h-[300px]"
                                     />}
 
-                                    {image && <Image
+                                    {image && <img
                                         src={image}
                                         alt="image to scan"
                                         width={300}

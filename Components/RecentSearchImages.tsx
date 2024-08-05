@@ -46,7 +46,7 @@ export default function RecentSearchImages({ messages }: { messages: any[] }) {
                     // <Link key={index} href={message.image} target='_blank'>
                     <tr className='border-b-2 bg-[#151c1e] border-[#2f2f2f] cursor-pointer' onClick={() => handleImageClick(message.image)}>
                         <td>{index}</td>
-                        <td><div className='flex flex-row items-center'>{<Image src={message.image} alt="detected frames" width={30} height={30} className='mr-4 rounded-full aspect-square object-cover' />} Furqan Tariq</div></td>
+                        <td><div className='flex flex-row items-center'>{<img src={message.image} alt="detected frames" width={30} height={30} className='mr-4 rounded-full aspect-square object-cover' />} Furqan Tariq</div></td>
                         <td>{new Date(message.timestamp).toDateString()}</td>
                         {/* <td>{message?.detected.toString()}</td> */}
                         <td>P-1</td>

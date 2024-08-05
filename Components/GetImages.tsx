@@ -41,7 +41,7 @@ export default function GetImages({ setSelectedImage }: any) {
                         </div>
                     )
                         :
-                        (<Image
+                        (<img
                             src={images.up_image}
                             alt="image to scan"
                             width={300}

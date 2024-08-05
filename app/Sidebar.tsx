@@ -18,7 +18,7 @@ export default function Sidebar() {
                 <div
                     className='flex-1'
                 >
-                    {/* <Image
+                    {/* <img
                     src={"/profile.jpg"}
                     alt="profile picture"
                     width={60}
