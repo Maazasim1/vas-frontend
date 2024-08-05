@@ -27,9 +27,12 @@ export default function Page({
   return (
     <main className="flex min-h-screen flex-col sm:flex-row p-10 w-[100vw] h-[100vh] overflow-hidden">
       <>
-          <Navbar />
+        <Navbar />
         <div className=" sm:flex-[1]  ">
-          <Sidebar />
+
+          <Suspense>
+            <Sidebar />
+          </Suspense>
         </div>
         <div className="flex-[5] mt-[50px]">
           <div className="flex sm:flex-row flex-col items-center sm:mb-3 mb-5 mt-5 sm:mt-0">

@@ -26,9 +26,11 @@ export default function Page({
   return (
     <main className="flex min-h-screen flex-col sm:flex-row p-10">
       <>
-      <Navbar />
+        <Navbar />
         <div className=" sm:flex-[1]">
-          <Sidebar />
+          <Suspense>
+            <Sidebar />
+          </Suspense>
         </div>
         <div className="flex-[5]">
           <div className="flex sm:flex-row flex-col items-center sm:mb-3 mb-5 mt-5 sm:mt-0">
