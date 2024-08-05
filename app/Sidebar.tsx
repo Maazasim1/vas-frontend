@@ -5,9 +5,11 @@ import { TbDeviceDesktopSearch, TbDatabaseSearch, TbVideo, TbReport, TbHome } fr
 import { signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Sidebar() {
     const session = useSession()
+    const router=useRouter();
     return (
         <>
             <div
@@ -24,6 +26,12 @@ export default function Sidebar() {
                     className='rounded-full border-[#1c1c1c] border-[3px] w-10 h-10 sm:w-[60px] sm:h-[60px]'
 
                 /> */}
+                    <p
+                        className="font-bold text-3xl"
+
+                    >
+                        VAS
+                    </p>
                     <p
                         className="font-bold "
 
@@ -123,7 +131,10 @@ export default function Sidebar() {
                 </nav>
             </div>
             <button
-                onClick={() => signOut()}
+                onClick={async () => {
+                   await signOut()
+                   router.push("/auth/signin")
+                }}
                 className='sm:w-[20.8vw] w-24 h-10 bg-[#1f1f1f] rounded-md'
             >
                 Logout

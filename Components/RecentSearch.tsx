@@ -1,7 +1,7 @@
 
 'use client'
 import Database from "@/Components/Database";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import GetImages from "@/Components/GetImages";
 import { useState } from "react";
 import { requestLogs } from "@/lib/utils/requestLogs";
@@ -20,10 +20,21 @@ export default function RecentSearch({
     const [logs, setLogs] = useState<any[]>([])
     const [image, setImage] = useState("")
     const [loading, setLoading] = useState(false)
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const scrollToTop = () => {
+        if (containerRef.current) {
+            containerRef.current.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+    };
 
 
     async function fetchLogsArray(selected: string) {
-        setLoading(true)
+        setLoading(true);
+        scrollToTop();
         const dataTemp = await requestLogs(selected);
         setLoading(false)
         setLogs(dataTemp)
@@ -34,7 +45,7 @@ export default function RecentSearch({
         console.log(imageURL)
         setImage(imageURL)
     }
-    
+
 
 
 
@@ -65,17 +76,17 @@ export default function RecentSearch({
                 </div>
             </div>
             {searchParams?.tab === "recent-search" &&
-                <div className="bg-[#1f1f1f] flex-[1.5] rounded-xl p-3 overflow-scroll no-scrollbar">
+                <div className="bg-[#1f1f1f] flex-[1.5] rounded-xl p-3 overflow-scroll no-scrollbar" ref={containerRef}>
                     <div className="flex flex-row">
 
                         <h2
                             className="font-semibold text-xl"
                         >Further Information</h2>
-                        
+
                     </div>
                     {loading && <Loader Width={30} Height={30} />}
                     {logs[0]?.detection_results.length === 0 && <p>No data found</p>}
-                    {logs && <RecentSearchImages messages={logs[0]?.detection_results} />}
+                    {logs && <RecentSearchImages  messages={logs[0]?.detection_results} />}
                     {/* {logs[0]?.detection_results?.map((log: any, index: number) => <>
                         <button
                             onClick={() => handleImage(log.image)}
@@ -96,5 +107,3 @@ export default function RecentSearch({
         </div>
     )
 }
-
-

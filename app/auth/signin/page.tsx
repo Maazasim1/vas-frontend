@@ -50,6 +50,7 @@ export default function Signin() {
     return (
 
         <section style={{ backgroundImage: `url(${bg.src})`, width: '100vw', height: "100vh", backgroundRepeat: 'no-repeat', backgroundSize: "cover" }}>
+            <h1 className='bg-black rounded-br-lg w-32 py-2 font-bold flex items-center justify-center text-2xl'>VisiumX</h1>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                 <div className="w-full bg-[#1f1f1f] rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
@@ -85,7 +86,7 @@ export default function Signin() {
                                         <label htmlFor="remember" className="text-gray-500 ">Remember me</label>
                                     </div>
                                 </div>
-                                <a href="#" className="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
+                               
                             </div>
 
                             <button disabled={loading} className="mt-2 w-full text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex-row flex items-center justify-center">{loading ? <Loader Width={20} Height={20} /> : "Sign in"}</button>
