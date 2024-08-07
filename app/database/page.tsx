@@ -49,7 +49,7 @@ export default function Page({
             < RecentSearch params={params} searchParams={searchParams} />
           </div>
 
-          <div className={searchParams?.tab === "new-search" ? "block" : "hidden"}>
+          <div className={searchParams?.tab === "new-search" ? "block" : searchParams?.tab === undefined?"block":"hidden"}>
             <UploadImage />
           </div>
 
