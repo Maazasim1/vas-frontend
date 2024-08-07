@@ -13,6 +13,7 @@ import GetImages from "@/Components/GetImages";
 import UploadImage from "@/Components/UploadImage";
 import RecentSearch from "@/Components/RecentSearch";
 import Navbar from "@/Components/Navbar";
+import NVRUpload from "@/Components/NVRUpload";
 export default function Page({
   params,
   searchParams,
@@ -44,15 +45,16 @@ export default function Page({
             </p>
             <Database params={params} searchParams={searchParams} />
           </div>
-
-
-
           <div className={searchParams?.tab === "recent-search" ? "block" : "hidden"}>
             < RecentSearch params={params} searchParams={searchParams} />
           </div>
 
-          <div className={searchParams?.tab === "recent-search" ? "hidden" : "block"}>
+          <div className={searchParams?.tab === "new-search" ? "block" : "hidden"}>
             <UploadImage />
+          </div>
+
+          <div className={searchParams?.tab === "nvr-upload" ? "block" : "hidden"}>
+            <NVRUpload params={params} searchParams={searchParams}/>
           </div>
 
         </div>

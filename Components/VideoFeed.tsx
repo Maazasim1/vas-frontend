@@ -24,9 +24,9 @@ import Link from 'next/link';
 import { BACKEND_URL } from '@/config'
 import { useRouter } from 'next/navigation';
 
-export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGImage,type}: any) {
+export default function VideoFeed({ handleImage, id, setId, setVideoCount, setOGImage, type }: any) {
   const [messages, setMessages] = useState<any[]>([]);
-  
+
   const session = useSession()
   const router = useRouter()
 
@@ -44,7 +44,7 @@ export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGIm
         alert(newMessage["Video Completion"])
         setVideoCount(0)
         eventSource.close()
-       handleCancel()
+        handleCancel()
         return;
       }
       if (newMessage.video_count) {
@@ -83,7 +83,7 @@ export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGIm
   //         stream:"video 1"
   //     }
   //   ]
-  function handleCancel(){
+  function handleCancel() {
     setOGImage()
     setId("")
   }
@@ -92,7 +92,7 @@ export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGIm
 
   return (
     <div>
-     
+
       {/* <p>Passed: {(messages.filter((message)=>message.detected)).length}</p>
         <p>Failed: {(messages.filter((message)=>!message.detected)).length}</p> */}
       <table className='p-5 w-full'>
@@ -128,20 +128,29 @@ export default function VideoFeed({ handleImage, id ,setId,setVideoCount,setOGIm
             </th>
           </tr>
         </thead>
-        <tbody>
-          {messages.map((message, index) => (
-            // <Link key={index} href={message.image} target='_blank'>
-            <tr className='border-b-2 bg-[#151c1e] border-[#2f2f2f] cursor-pointer' onClick={() => handleImageClick(message.image)}>
-              <td>{index}</td>
-              <td><div className='flex flex-row items-center'>{<img src={message.image} alt="detected frames" width={30} height={30} className='mr-4 rounded-full aspect-square object-cover' />} Furqan Tariq</div></td>
-              <td>{new Date(message.timestamp).toDateString()}</td>
-              {/* <td>{message?.detected.toString()}</td> */}
-              <td>P-1</td>
-              <td>C-1</td>
-            </tr>
-            // </Link>
-          ))}
-        </tbody>
+        {messages.length > 0 ? (
+
+          <tbody>
+            {messages.map((message, index) => (
+              // <Link key={index} href={message.image} target='_blank'>
+              <tr className='border-b-2 bg-[#151c1e] border-[#2f2f2f] cursor-pointer' onClick={() => handleImageClick(message.image)}>
+                <td>{index}</td>
+                <td><div className='flex flex-row items-center'>{<img src={message.image} alt="detected frames" width={30} height={30} className='mr-4 rounded-full aspect-square object-cover' />} Furqan Tariq</div></td>
+                <td>{new Date(message.timestamp).toDateString()}</td>
+                {/* <td>{message?.detected.toString()}</td> */}
+                <td>P-1</td>
+                <td>C-1</td>
+              </tr>
+              // </Link>
+            ))}
+          </tbody>
+        ) : (
+          <div className='flex  justify-center items-center sm:h-[65vh] h-[80vh]'>
+
+            <h1 className='font-bold'>Hang on, we're trying to recognize your friend</h1>
+          </div>
+        )
+        }
       </table>
     </div>
   );
