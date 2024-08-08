@@ -104,8 +104,8 @@ export default function Sidebar() {
                                 </>
                             </SideButtons>
                         </Link>
-                        <Link href="/optional?feature=SeeAllVideosNVR">
-                            <SideButtons className={isActive('/optional?feature=SeeAllVideosNVR')}>
+                        <Link href="/seeallnvr">
+                            <SideButtons className={isActive('/seeallnvr')}>
                                 <>
                                     <TbVideo size={iconSize} className='mr-4 p-2 rounded-full' color='white' />
                                     See All Videos (NVR)

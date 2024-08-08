@@ -13,7 +13,7 @@ import { IoIosCloudUpload } from "react-icons/io";
 import { v4 as uuidv4 } from 'uuid';
 import { BACKEND_URL } from "@/config";
 
-export default function NVRUpload({
+export default function SeeAllBox({
     params,
     searchParams,
 }: {
@@ -41,7 +41,7 @@ export default function NVRUpload({
         setReload(false);
         setReload(true);
 
-    }, [loading])
+    },[loading])
     async function fetchAllVideos(selected: string) {
         setLoading(true);
         scrollToTop();
@@ -129,17 +129,38 @@ export default function NVRUpload({
 
         <div className="flex sm:flex-row-reverse flex-col h-[75vh] ">
 
+            <div className="bg-[#1f1f1f] flex-[1] rounded-xl sm:ml-3 p-3 sm:mb-0 mb-5 sm:h-[75vh] h-[40vh] overflow-scroll no-scrollbar">
+                <h2
+                    className="font-semibold text-xl mb-5"
+                >Uploaded to NVR</h2>
+                <div className="flex flex-row h-full w-full">
+                    <div className=" flex-1">
+                        <div
+                            className="bg-gradient-to-r from-pink-500 to-violet-600"
+                        >
+                        </div>
+                    </div>
+                    <div>
+                    </div>
 
-            <div className="bg-[#1f1f1f]  w-[80vw] rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[70vh] h-[40vh] no-scrollbar overflow-scroll">
+                    {!loading &&
+                        <Suspense fallback={<Loader Width={30} Height={30}/>}>
+                            < GETNVRVideos setSelectedImage={fetchAllVideos} />
+                        </Suspense>}
+
+                </div>
+            </div>
+
+            {/* <div className="flex sm:flex-row flex-col h-[85vh] ">
 
                 <div className="bg-[#1f1f1f]  rounded-xl sm:mr-3 p-3 sm:mb-0 mb-5 sm:h-[75vh] h-[40vh] no-scrollbar overflow-scroll">
                     <h1 className="font-bold text-lg">Upload to NVR</h1>
-            
+
                     <div className="flex flex-row h-full w-full">
                         <div className=" flex-1 items-center flex justify-center">
 
                             <>
-                                {loading ? <div className="w-[300px] h-[300px]"><Loader Width={50} Height={50} /></div> :
+                                {loading ?<div className="w-[300px] h-[300px]"><Loader Width={50} Height={50} /></div> :
                                     <>
                                         <label htmlFor="file-upload" className="font-bold text-lg bg-[#2f2f2f] h-[300px] flex items-center px-3 rounded-md w-[300px] justify-around flex-col">
                                             <IoIosCloudUpload size={150} />
@@ -156,46 +177,7 @@ export default function NVRUpload({
 
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
-    )
-} const Dropdown = () => {
-
-    const [open, setOpen] = useState(false);
-
-
-    return (
-        <>
-
-            <button onClick={() => setOpen(!open)} id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="button">Dropdown button <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                </svg>
-            </button>
-
-
-            {open && <div id="dropdown" className="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                    <li>
-                        <a href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                            out</a>
-                    </li>
-                </ul>
-            </div>}
-        </>
     )
 }
