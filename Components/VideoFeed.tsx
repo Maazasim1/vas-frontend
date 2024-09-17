@@ -70,7 +70,7 @@ export default function VideoFeed({ handleImage, id, setId, setVideoCount, setOG
 
   function handleImageClick(image: string): void {
     if (image) {
-
+      
       window.open(image, '_blank')?.focus()
     }
 
@@ -131,12 +131,12 @@ export default function VideoFeed({ handleImage, id, setId, setVideoCount, setOG
         {messages.length > 0 ? (
 
           <tbody>
-            {messages.map((message, index) => (
+            {messages && messages.map((message, index) => (
               // <Link key={index} href={message.image} target='_blank'>
               <tr className='border-b-2 bg-[#151c1e] border-[#2f2f2f] cursor-pointer' onClick={() => handleImageClick(message.image)}>
                 <td>{index}</td>
                 <td><div className='flex flex-row items-center'>{<img src={message.image} alt="detected frames" width={30} height={30} className='mr-4 rounded-full aspect-square object-cover' />} Furqan Tariq</div></td>
-                <td>{new Date(message.timestamp).toDateString()}</td>
+                <td>{message.timestamp}</td>
                 {/* <td>{message?.detected.toString()}</td> */}
                 <td>P-1</td>
                 <td>C-1</td>

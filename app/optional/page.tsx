@@ -36,7 +36,7 @@ export default function Page({
                 </div>
                 <div className="flex-[5]">
                     <div className="flex sm:flex-row flex-col items-center sm:mb-3 mb-5 mt-5 sm:mt-0">
-                        <h1 className="font-semibold text-2xl">Optional</h1>
+                        <h1 className="font-semibold text">On-Demand</h1>
                     </div>
                     {featureKey && FEATURES[featureKey] && (
                         <>

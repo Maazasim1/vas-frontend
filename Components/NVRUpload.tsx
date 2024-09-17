@@ -75,7 +75,7 @@ export default function NVRUpload({
 
     const handleImageUpload = async (event: { target: { files: any[] | FileList | null; } }) => {
         setLoading(true)
-        // alert("called this")
+        alert("called this")
 
         if (!event.target.files) {
             return;
